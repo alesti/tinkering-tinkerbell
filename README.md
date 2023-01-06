@@ -41,7 +41,7 @@ I was not able to bind all services to other ports in the docker-compose file, i
 I goofed around in the logfiles, but i lost faith and went to another way.
 
 I found in the [CNCF slack,
-#tinkerbell](https://cloud-native.slack.com/archives/C01SRB41GMT/p1672755969841129?thread_ts=1672423115.308059&cid=C01SRB41GMT)
+\#tinkerbell](https://cloud-native.slack.com/archives/C01SRB41GMT/p1672755969841129?thread_ts=1672423115.308059&cid=C01SRB41GMT)
 a interesting start point: Using [k3d](https://k3d.io/v5.4.6/) - its a k3s in
 docker - to run a local cluster without the k3s loadbalancer:
 
@@ -125,7 +125,7 @@ I needed to burn a lot of smaller filament remains, so it has really ugly colour
 
 This case design is so genius while it is not only endless stackable but it
 has also cages/bays and caddies, the Odroids are mounted to the caddies and
-removable from the rack. Thats not the case (sic!) at our company labcluster
+are easy removable from the rack. Thats not the case (sic!) at our company labcluster
 case, it is really a mess to change a node, if neccessary!
 
 The switch is just 1mm to big to fit into a cage, thats why it lives on the top
