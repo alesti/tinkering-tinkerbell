@@ -58,8 +58,10 @@ I printed a case with parts of
 [Odroid H2 Rackmount project](https://www.thingiverse.com/thing:3485530) - the H3 
 have the same physical specs as their predecessor H2.
 
+![Case with Odroids and Switch](https://photos.google.com/share/AF1QipOEYq0544IV67harl58_uC0024xNleLqJeiRTEjn7_saC3fTc6Ne1Pnuho2mmJ2EA/photo/AF1QipO_NTAZOQBrg8EjbJbjbRpaWya-QsfAnJ6azr_p?key=SUhpWUtIOFYzX0pybnV2RXV3aVNjRk9uWXVsazFR)
+
 I needed to burn a lot of smaller filament remains, so it has really ugly colours :-)
-[Odroid Cluster](https://photos.google.com/share/AF1QipOEYq0544IV67harl58_uC0024xNleLqJeiRTEjn7_saC3fTc6Ne1Pnuho2mmJ2EA?key=SUhpWUtIOFYzX0pybnV2RXV3aVNjRk9uWXVsazFR) 
+[Odroid Cluster Pictures](https://photos.google.com/share/AF1QipOEYq0544IV67harl58_uC0024xNleLqJeiRTEjn7_saC3fTc6Ne1Pnuho2mmJ2EA?key=SUhpWUtIOFYzX0pybnV2RXV3aVNjRk9uWXVsazFR) 
 
 This case design is so genius while it is not only endless stackable but it
 has also cages/bays and caddies, the Odroids are mounted to the caddies and
