@@ -1,4 +1,4 @@
-# tinkering-tinkerbell
+# tinkering tinkerbell
 Tinkering around with [Tinkerbell](https://docs.tinkerbell.org/).
 Exploring bare metal k8s cluster provisioning...
 
@@ -7,8 +7,8 @@ I want to learn more about the state of art kubernetes cluster provisoning on ba
 At work we use [Gardener](https://gardener.cloud/) to provision k8s clusters on
 different providers as GCP, AWS, OpenStack, VMware.
 
-Our companies old legacy, now switched off bare metal cluster was provisioned by
-terraform, metallb, matchbox, outdated docker-images and a lot of scripts.
+Our companys (old, legacy, now switched off) bare metal cluster was provisioned by
+terraform, metallb, matchbox, some outdated docker-images and a lot of scripts.
 
 Nowadays there is the shiny [Cluster API](https://cluster-api.sigs.k8s.io/) to
 provide the same declarative way to structure and provide nodes and
@@ -52,6 +52,8 @@ create --network host --no-lb --k3s-arg "--disable=traefik,servicelb" --k3s-arg
 --host-pid-mode
 ```
 
+Or, if was created once `k3d cluster start k3s-default`
+
 And then deploy the tinkerbell stuff with [helm](https://github.com/tinkerbell/charts/tree/main/tinkerbell/stack#tldr):
 
 ```bash
@@ -66,6 +68,17 @@ I am on that right now, and i can see one of my odroids screaming:
 ```bash
 {"level":"info","ts":1673017452.6608596,"caller":"dhcp4-go@v0.0.0-20190402165401-39c137f31ad3/handler.go:105","msg":"","service":"github.com/tinkerbell/boots","pkg":"dhcp","pkg":"dhcp","event":"recv","mac":"00:1e:06:45:01:1e","via":"0.0.0.0","iface":"enp2s0","xid":"\"f1:4e:78:13\"","type":"DHCPDISCOVER","secs":28}
 ```
+
+### Testing templates 
+
+```
+trusted_proxies=$(kubectl get nodes -o jsonpath='{.items[*].spec.podCIDR}' | tr ' ' ',')
+helm template -f values.yaml . --dry-run --output-dir=tmp --set "boots.trustedProxies=${trusted_proxies}" --set "hegel.trustedProxies=${trusted_proxies}"
+```
+
+I changed all ip related values in
+https://github.com/tinkerbell/charts/blob/main/tinkerbell/stack/values.yaml to
+the ip address to 192.168.48.10 (provisioner host in cluster network) and set this ip also explicitly where the bind was only `:port` (any). Same for boots values (https://github.com/tinkerbell/charts/blob/main/tinkerbell/boots/values.yaml).
 
 
 ## Hardware
