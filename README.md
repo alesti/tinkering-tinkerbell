@@ -52,10 +52,20 @@ create --network host --no-lb --k3s-arg "--disable=traefik,servicelb" --k3s-arg
 --host-pid-mode
 ```
 
-And then deploy the tinkerbell stuff with helm.
-I am on that right now.
+And then deploy the tinkerbell stuff with [helm](https://github.com/tinkerbell/charts/tree/main/tinkerbell/stack#tldr):
 
+```bash
+(in tinkerbell/charts/tinkerbell)
+helm dependency build stack/
+trusted_proxies=$(kubectl get nodes -o jsonpath='{.items[*].spec.podCIDR}' | tr ' ' ',')
+helm install stack-release stack/ --create-namespace --namespace tink-system --wait --set "boots.trustedProxies=${trusted_proxies}" --set "hegel.trustedProxies=${trusted_proxies}"
+```
 
+I am on that right now, and i can see one of my odroids screaming:
+
+```bash
+{"level":"info","ts":1673017452.6608596,"caller":"dhcp4-go@v0.0.0-20190402165401-39c137f31ad3/handler.go:105","msg":"","service":"github.com/tinkerbell/boots","pkg":"dhcp","pkg":"dhcp","event":"recv","mac":"00:1e:06:45:01:1e","via":"0.0.0.0","iface":"enp2s0","xid":"\"f1:4e:78:13\"","type":"DHCPDISCOVER","secs":28}
+```
 
 
 ## Hardware
@@ -133,7 +143,7 @@ without the vertical columns.
 
 I used 3mm rod to connect the units, the holes are for much bigger rod, so i
 printed some spacers and pressed them into the connections between the units
-([these blue tubes](https://photos.google.com/share/AF1QipOEYq0544IV67harl58_uC0024xNleLqJeiRTEjn7_saC3fTc6Ne1Pnuho2mmJ2EA/photo/AF1QipOLIP7ZdU2PIErlum0OlAI_0ENNHN7T6_IcpPRl?key=SUhpWUtIOFYzX0pybnV2RXV3aVNjRk9uWXVsazFR).
+([these blue tubes](https://photos.google.com/share/AF1QipOEYq0544IV67harl58_uC0024xNleLqJeiRTEjn7_saC3fTc6Ne1Pnuho2mmJ2EA/photo/AF1QipOLIP7ZdU2PIErlum0OlAI_0ENNHN7T6_IcpPRl?key=SUhpWUtIOFYzX0pybnV2RXV3aVNjRk9uWXVsazFR)).
 
 The fan base is the longest thing i ever printed, it uses the whole printspace
 my printer is able to serve (25cm). I melted threaded inserts into it to mount
