@@ -23,7 +23,10 @@ I am interested in bare metal hardware provisoning.
 Equinix Metal developed [Tinkerbell](https://docs.tinkerbell.org) and opensourced it, i will give it a try.
 
 There are some shortcuts as [K3S](https://k3s.io/), but i want to use a small, container centric os like 
-[flatcar](https://www.flatcar.org/), not a fullsize ubuntu.
+[flatcar](https://www.flatcar.org/), not a fullsize ubuntu, found 2 links to check later:
+
+* https://tinkerbell.org/examples/flatcar-container-linux/
+* https://kinvolk.io/blog/2020/10/provisioning-flatcar-container-linux-with-tinkerbell/
 
 
 ## Goofing around (fast moving targets - DRAFT)
@@ -142,7 +145,7 @@ I printed a case with parts of
 [Odroid H2 Rackmount project](https://www.thingiverse.com/thing:3485530) - the H3 
 have the same physical specs as their predecessor H2.
 
-![Case with Odroids and Switch](pics/case.jpg)
+![Case with Odroids and Switch](pics/case_sm.jpg)
 
 I needed to burn a lot of smaller filament remains, so it has really ugly colours :-)
 [Here are some more pictures](https://photos.google.com/share/AF1QipOEYq0544IV67harl58_uC0024xNleLqJeiRTEjn7_saC3fTc6Ne1Pnuho2mmJ2EA?key=SUhpWUtIOFYzX0pybnV2RXV3aVNjRk9uWXVsazFR) 
