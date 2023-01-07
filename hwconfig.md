@@ -1,4 +1,4 @@
-# Hardware specs
+# Hardware config
 
 ## Network 
 
