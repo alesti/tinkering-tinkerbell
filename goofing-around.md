@@ -24,7 +24,13 @@ create --network host --no-lb --k3s-arg "--disable=traefik,servicelb" --k3s-arg
 --host-pid-mode
 ```
 
-Or, if was created once `k3d cluster start k3s-default`
+Or, if was already created: `k3d cluster start k3s-default`
+
+FIXME: I am not sure if `--network host` is a clever option. It seems to use the other
+       interface of my H2 (i think while it has the default gw in its network).
+       Check https://k3d.io/v5.0.1/usage/commands/k3d_cluster_create/ options later to find a better(?) solution.
+
+
 
 And then deploy the tinkerbell stuff with [helm](https://github.com/tinkerbell/charts/tree/main/tinkerbell/stack#tldr):
 
@@ -55,6 +61,13 @@ the ip address to 192.168.48.10 (provisioner host in cluster network) and set th
 
 ```bash
 (ssh) aleks@odroid-1 ‹ main ↑●● › : ~/data/git/tinkering-tinkerbell/configs
-[0] % docker build -f Dockerfile_flatcar-install -t $TINKERBELL_HOST_IP/flatcar-install .
+[0] % TINKERBELL_HOST_IP=192.168.48.10 ; docker build -f Dockerfile_flatcar-install -t $TINKERBELL_HOST_IP/flatcar-install .
 ```
+
+`docker push $TINKERBELL_HOST_IP/flatcar-install` failed as the registry has an unknown cert ca.
+
+Ok, i stop here and try to get the k3d cluster running on the right ip first.
+
+
+
 
