@@ -11,7 +11,7 @@ First i aimed for arm64 (also known as Raspberry4, but the 8GB RAM version is
 at 180 € right now, if it is in stock somewhere, and its not possible
 to add more RAM later. If Raspi is an option, you should head over to [Building a
 bare-metal Kubernetes Cluster on Raspberry
-Pi](https://anthonynsimon.com/blog/kubernetes-cluster-raspberry-pi/).
+Pi](https://anthonynsimon.com/blog/kubernetes-cluster-raspberry-pi/) and https://github.com/christianhuening/pinetes/blob/main/README.md.
 
 My Odroids have (right now) 8 GB Ram and 256 GB NVME disk.
 

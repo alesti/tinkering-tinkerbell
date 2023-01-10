@@ -37,3 +37,7 @@ Find more about the used [hardware](hardware.md)
 [The WIP, just my notes to find a working solution](goofing-around.md).
   
 
+## Resources
+
+https://www.youtube.com/watch?v=Di_AR6nAss0
+
