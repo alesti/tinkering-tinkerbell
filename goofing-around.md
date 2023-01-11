@@ -1,5 +1,8 @@
 ## Goofing around (fast moving targets - DRAFT - unstructured notes)
 
+If i succeed i will write a runbook from these notes later.
+
+
 Tinkerbell bootstraps a single node cluster (k3s), but runs the services in parallel next to it - why?
 
 I tried the [sandbox approach with docker
@@ -9,8 +12,10 @@ services on it which ports are also requested by the tinkerbell services (even
 if i bind my services to a dedicated interface, docker tries to bind
 0.0.0.0:<port> in many cases).
 
-I was not able to bind all services to other ports in the docker-compose file, i got a k3s cluster but with only a coredns pod running.
-I goofed around in the logfiles, but i lost faith and went to another way.
+I was not able to bind all services to other ports in the docker-compose file,
+i got a k3s cluster but with only a coredns pod running.  I goofed around in
+the logfiles, but i lost faith and went to another way for the next round.
+I came back as i solved the problem to bind the docker network to the 2nd interface, see below.
 
 ### prequsites for docker compose approach
 
@@ -19,7 +24,8 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-o
 to install it from docker and not from ubuntu repo, and `sudo apt-get install
 docker-compose-plugin`.
 
-Instead `docker compose up -d` i use `docker compose up &>/tmp/log` and tail the logfile to get a clue whats going on.
+Instead `docker compose up -d` i used `docker compose up &>/tmp/log` and tail
+the logfile to get a clue whats going on.
 
 It boots, and if i reset my 2nd node, it loads the LinuxKit preboot env, but:
 
@@ -46,7 +52,8 @@ drwxr-xr-x    3 root     root          4096 Dec 14 01:20 ..
 /usr/share/nginx/html #
 ```
 
-I still not get the sense of the k3s, there is no tink-system ns nor any pod init, all docker running separatly. FIXME: Ask in slack.
+I still do not get the cause of running a k3s, there is no tink-system ns nor any pod init, all dockers are running running separatly. 
+FIXME: Ask in slack.
 
 ```bash
 Every 2,0s: docker ps                                                                                                                            node-02: Mon Jan  9 18:10:09 2023
@@ -147,7 +154,8 @@ I am on that right now, and i can see one of my odroids screaming:
 {"level":"info","ts":1673017452.6608596,"caller":"dhcp4-go@v0.0.0-20190402165401-39c137f31ad3/handler.go:105","msg":"","service":"github.com/tinkerbell/boots","pkg":"dhcp","pkg":"dhcp","event":"recv","mac":"00:1e:06:45:01:1e","via":"0.0.0.0","iface":"enp2s0","xid":"\"f1:4e:78:13\"","type":"DHCPDISCOVER","secs":28}
 ```
 
-The work with the docker compose created a manifest.yaml mit all (hardware.yaml template.yaml workflow.yaml) together and useful defaults. Needed to change the 8080 port of the webserver to 80 and the mac and ip addresses.
+The former tries with docker compose created a manifest.yaml with all hardware, template and workflow manifests together and some useful defaults. 
+I needed to change the 8080 port of the webserver to 80 and the mac and ip addresses.
 Deployed them manually (k apply -f manifest.yaml)
 
 Checked them with k get hardware|template|workflow
@@ -157,32 +165,6 @@ Checked them with k get hardware|template|workflow
 Creating image: https://docs.tinkerbell.org/deploying-operating-systems/examples-ubuntu/
 
 wget https://cloud-images.ubuntu.com/daily/server/focal/current/focal-server-cloudimg-amd64.img -O focal-server-cloudimg-amd64.img
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ### Testing templates 
