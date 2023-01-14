@@ -27,16 +27,12 @@ There are some shortcuts as [K3S](https://k3s.io/), but i want to use a small, c
 
 In a first step i will try the [Tinkerbell sandbox](https://github.com/tinkerbell/sandbox#quick-starts).
 
+See [k3d approach](k3d-approach.md) for what i learned so far. 
 
 ## Hardware
 
 I decided to use dedicated hardware for that experiment.
 Find more about the used [hardware](hardware.md).
-
-## Goofing around
-
-[The WIP, just my notes to find a working solution](goofing-around.md).
-  
 
 ## Resources
 
