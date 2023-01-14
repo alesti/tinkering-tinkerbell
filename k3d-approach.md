@@ -65,7 +65,8 @@ k8s cluster in a single docker container (ouch).  The difference to similar
 local k8s clusters like [minikube](https://minikube.sigs.k8s.io/docs/start/) is
 that k3d is reachable from outside of the node.
 
-Tinkebell does not use the default service loadbalancer as it uses not only tcp.
+Tinkerbell does not use the default service loadbalancer as it uses not only
+tcp (bootp/tftp).
 
 ```bash
 k3d cluster create --network clusternet --no-lb \
@@ -74,9 +75,9 @@ k3d cluster create --network clusternet --no-lb \
    --host-pid-mode tinkerbell
 ```
 
-Its api server is not reachable until i did some fine tuning. 
-I fetched the ip address by `docker container inspect k3d-tinkerbell-server-0` and
-change the apiserver ip in `~/.kube/config` to it with port 6443:
+Its api server was not reachable until i fetched the ip address by `docker
+container inspect k3d-tinkerbell-server-0` and change the apiserver ip in
+`~/.kube/config` to it with port 6443:
 
 ```bash
 [0] % grep 192.168.49 ~/.kube/config
