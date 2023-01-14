@@ -17,7 +17,7 @@ to add more RAM later. If Raspi is an option, you should head over to [Building 
 bare-metal Kubernetes Cluster on Raspberry
 Pi](https://anthonynsimon.com/blog/kubernetes-cluster-raspberry-pi/) and https://github.com/christianhuening/pinetes/blob/main/README.md.
 
-My Odroids have (right now) 8 GB Ram and 256 GB NVME disk.
+My Odroids have (right now) 8 GB Ram and 256 GB NVMe disk.
 
 I am already familar with the predecessor [Odroid H2 (similar specs, Celeron
 CPU)](https://wiki.odroid.com/odroid-h2/start), my personal one serves all
@@ -53,10 +53,10 @@ standard 4pin 2,54mm pitch connector.
 The Odroids drain up to 4 Amps each with two SATA disks and under full cpu load
 with 15V DC, the MikroTik is also fine with 15V, so i bought a [ham radio power
 supply](https://www.komerci.de/shop/stromversorgung/Festspannungsnetzgeraete/ps30swiv-festspannungsnetzgeraet-13-8v-30a-lcd)
-with 15V and 30 Amps max) and some 5.5 mm dc power jacks with open wires and
+with 15V and 30 Amps max and some 5.5 mm dc power jacks with open wires and
 build a suitable power distribution cable.
 
-In real live all loads together consume under 3A, there is no SATA disk and not
+In real live all loads together consume under 3A, as there is no SATA disk and not
 much load at all.
 
 ### Case 
@@ -67,7 +67,7 @@ have the same physical specs as the H2.
 
 ![Case with Odroids and Switch](pics/case_sm.jpg)
 
-I needed to burn a lot of smaller filament remains, so it has really ugly colours :-)
+I burned down a lot of smaller filament remains, so it has really ugly colours :-)
 [Here are some more pictures](https://photos.google.com/share/AF1QipOEYq0544IV67harl58_uC0024xNleLqJeiRTEjn7_saC3fTc6Ne1Pnuho2mmJ2EA?key=SUhpWUtIOFYzX0pybnV2RXV3aVNjRk9uWXVsazFR) 
 
 This case design is genius while it is not only endless stackable but it

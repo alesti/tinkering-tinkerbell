@@ -42,4 +42,4 @@ Find more about the used [hardware](hardware.md).
 * TGI k8s 158 - bare metal clusters with Cluster API Tinkerbell: https://www.youtube.com/watch?v=Di_AR6nAss0
 * Tinkerbell with flatcar: https://tinkerbell.org/examples/flatcar-container-linux/
 * Flatcar with Tinkerbell: https://kinvolk.io/blog/2020/10/provisioning-flatcar-container-linux-with-tinkerbell/
-
+* Tink binaries https://github.com/tinkerbell/tink

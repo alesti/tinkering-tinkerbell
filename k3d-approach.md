@@ -65,8 +65,8 @@ k8s cluster in a single docker container (ouch).  The difference to similar
 local k8s clusters like [minikube](https://minikube.sigs.k8s.io/docs/start/) is
 that k3d is reachable from outside of the node.
 
-Tinkerbell does not use the default service loadbalancer as it uses not only
-tcp (bootp/tftp).
+Tinkerbell does not use the default service [loadbalancer as it uses not only
+tcp but also udp (bootp/tftp/rsyslogd)](https://github.com/tinkerbell/charts/tree/main/tinkerbell/stack#design-details).
 
 ```bash
 k3d cluster create --network clusternet --no-lb \
