@@ -1,5 +1,6 @@
-# tinkering tinkerbell Tinkering around with
-[Tinkerbell](https://docs.tinkerbell.org/) - exploring bare metal k8s cluster
+# tinkering tinkerbell 
+
+Tinkering around with [Tinkerbell](https://docs.tinkerbell.org/) - exploring bare metal k8s cluster
 provisioning...
 
 I want to learn more about the state of art kubernetes cluster provisoning on bare metal.
@@ -25,9 +26,9 @@ Equinix Metal developed [Tinkerbell](https://docs.tinkerbell.org) and opensource
 There are some shortcuts as [K3S](https://k3s.io/), but i want to use a small, container centric os like 
 [flatcar](https://www.flatcar.org/), not a fullsize ubuntu. 
 
-In a first step i will try the [Tinkerbell sandbox](https://github.com/tinkerbell/sandbox#quick-starts).
+In a first step i tried the [Tinkerbell sandbox](https://github.com/tinkerbell/sandbox#quick-starts).
 
-See [k3d approach](k3d-approach.md) for what i learned so far. 
+See my notes [k3d approach](k3d-approach.md) for what i learned so far. 
 
 ## Hardware
 
