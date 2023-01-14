@@ -29,7 +29,7 @@ docker macvlan
 networks](https://blog.oddbit.com/post/2018-03-12-using-docker-macvlan-networks/)
 
 I have a distinct network for the lab (192.168.48.0/20) (see
-[hwconfig.md](config/hwconfig.md).  The new docker network will have
+[hwconfig.md](configs/hwconfig.md)).  The new docker network will have
 192.168.49.0/24 and is part of the lab net.  I preserve one ip (192.168.49.1)
 to be not assigned by docker (to use it as connection from the host into the
 cluster network).
@@ -56,6 +56,7 @@ ping 192.168.48.2
 ping 192.168.49.0
 ssh 192.168.49.0
 docker exec -it lalala ash
+```
 
 ### Start k3d cluster
 
@@ -73,8 +74,8 @@ k3d cluster create --network clusternet --no-lb \
    --host-pid-mode tinkerbell
 ```
 
-Its api server is not reachable until you do some fine tuning. 
-Fetch the ip address by `docker container inspect k3d-tinkerbell-server-0` and
+Its api server is not reachable until i did some fine tuning. 
+I fetched the ip address by `docker container inspect k3d-tinkerbell-server-0` and
 change the apiserver ip in `~/.kube/config` to it with port 6443:
 
 ```bash
@@ -94,20 +95,20 @@ And then deploy the tinkerbell stuff with
 
 I needed to change the ip addresses to the one the k3d cluster is listening on (192.168.49.0 in my case) in 
 * [boots/values.yaml](https://github.com/tinkerbell/charts/blob/main/tinkerbell/boots/values.yaml)
-  - but do not change line 7, it needs to listen on 0.0.0.0 here to answer to broadcasts from new nodes begging for pxe info.
+  but do not change line 7, it needs to listen on 0.0.0.0 here to answer to broadcasts from new nodes begging for pxe info.
 * [stack/values.yaml](https://github.com/tinkerbell/charts/blob/main/tinkerbell/stack/values.yaml)
 
 See the [stack
 README](https://github.com/tinkerbell/charts/tree/main/tinkerbell/stack#installing-the-chart)
 for some more details.
  
-Then deploy it with helm:
+Then deploy it with helm (in [tinkerbell/charts/tinkerbell](https://github.com/tinkerbell/charts/tree/main/tinkerbell)) 
 
 ```bash
-(in tinkerbell/charts/tinkerbell)
 helm dependency build stack/
 trusted_proxies=$(kubectl get nodes -o jsonpath='{.items[*].spec.podCIDR}' | tr ' ' ',')
-helm install stack-release stack/ --create-namespace --namespace tink-system --wait --set "boots.trustedProxies=${trusted_proxies}" --set "hegel.trustedProxies=${trusted_proxies}"
+helm install stack-release stack/ --create-namespace --namespace tink-system \
+  --wait --set "boots.trustedProxies=${trusted_proxies}" --set "hegel.trustedProxies=${trusted_proxies}"
 ```
 
 After some time a new namespace (tink-system) appears and the tink pods.
