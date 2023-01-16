@@ -30,16 +30,15 @@ networks](https://blog.oddbit.com/post/2018-03-12-using-docker-macvlan-networks/
 
 I have a distinct network for the lab (192.168.48.0/20) (see
 [hwconfig.md](configs/hwconfig.md)).  The new docker network will have
-192.168.49.0/24 and is part of the lab net.  I preserve one ip (192.168.49.1)
+192.168.49.0/24 and is part of the lab net.  I preserve two ip (192.168.49.0 and .1)
 to be not assigned by docker (to use it as connection from the host into the
 cluster network).
-This matroshka net will use the first ip (192.168.49.0) as
-host ip, but i dont care.
 
 ```bash
 docker network create -d macvlan --subnet=192.168.48.0/20 \
-  --ip-range=192.168.49.0/24 --aux-address 'host=192.168.49.1' \
-  --gateway=192.168.48.1 -o parent=enp2s0 clusternet
+  --ip-range=192.168.49.0/24 --aux-address 'netaddress=192.168.49.0' \
+  --aux-address 'shim=192.168.49.1' --gateway=192.168.48.1 \
+  -o parent=enp2s0 clusternet
 # have a look with
 docker network inspect clusternet
 
@@ -53,8 +52,8 @@ ip route add 192.168.49.0/24 dev clusternet-shim
 docker run --rm -dit --network clusternet --name lalala alpine:latest ash
 docker container inspect lalala
 ping 192.168.48.2
-ping 192.168.49.0
-ssh 192.168.49.0
+ping 192.168.49.2
+ssh 192.168.49.2
 docker exec -it lalala ash
 ```
 
@@ -81,12 +80,12 @@ container inspect k3d-tinkerbell-server-0` and change the apiserver ip in
 
 ```bash
 [0] % grep 192.168.49 ~/.kube/config
-    server: https://192.168.49.0:6443
+    server: https://192.168.49.2:6443
 
 [1] % k cluster-info
-Kubernetes control plane is running at https://192.168.49.0:6443
-CoreDNS is running at https://192.168.49.0:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-Metrics-server is running at https://192.168.49.0:6443/api/v1/namespaces/kube-system/services/https:metrics-server:https/proxy
+Kubernetes control plane is running at https://192.168.49.2:6443
+CoreDNS is running at https://192.168.49.2:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+Metrics-server is running at https://192.168.49.2:6443/api/v1/namespaces/kube-system/services/https:metrics-server:https/proxy
 ```
 
 ### Deploy Tinkerbell
@@ -94,7 +93,7 @@ Metrics-server is running at https://192.168.49.0:6443/api/v1/namespaces/kube-sy
 And then deploy the tinkerbell stuff with
 [helm](https://github.com/tinkerbell/charts/tree/main/tinkerbell/stack#tldr) after some finetuning:
 
-I needed to change the ip addresses to the one the k3d cluster is listening on (192.168.49.0 in my case) in 
+I needed to change the ip addresses to the one the k3d cluster is listening on (192.168.49.2 in my case) in 
 * [boots/values.yaml](https://github.com/tinkerbell/charts/blob/main/tinkerbell/boots/values.yaml)
   but do not change line 7, it needs to listen on 0.0.0.0 here to answer to broadcasts from new nodes begging for pxe info.
 * [stack/values.yaml](https://github.com/tinkerbell/charts/blob/main/tinkerbell/stack/values.yaml)
