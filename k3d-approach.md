@@ -201,7 +201,7 @@ created a pcap file in boots to have a look with wireshark - it ran until the no
 You can find it [here](configs/boots-tcpdump.out) to have a look.
 
 For me it looks like the node gets [the DHCP
-Offer](pics/boots-dhcp-offer.png) and it 'knows' its ip in the boot
+Offer (screenshot)](pics/boots-dhcp-offer.png) and it 'knows' its ip in the boot
 screen, but it does not configure the interface accordingly - there is no
 gratious arp or a connection attempt to the http server.
 
