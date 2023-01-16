@@ -1,8 +1,10 @@
+# from https://github.com/tinkerbell/tink/blob/main/config/crd/examples/hardware.yaml
+#
 apiVersion: "tinkerbell.org/v1alpha1"
 kind: Hardware
 metadata:
   name: node-01
-  namespace: default # sure? not tink-system?
+  namespace: default 
 spec:
   disks:
     - device: /dev/nvme0n1
