@@ -40,7 +40,7 @@ env:
 - name: DATA_MODEL_VERSION
   value: "kubernetes"
 - name: FACILITY_CODE
-  value: "lab1"
+  value: "alekslab"
 - name: HTTP_BIND
   value: "192.168.49.2:80"
 - name: MIRROR_BASE_URL
