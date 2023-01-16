@@ -152,6 +152,9 @@ template.tinkerbell.org/ubuntu-focal unchanged
 workflow.tinkerbell.org/wf-node-01 unchanged
 ```
 
+
+### Boots errors
+
 Boots answers bootp requests, and it looks like that the clients get their ip:
   
 ```bash
