@@ -139,7 +139,7 @@ And, if i start one of my nodes, i can see in boots logs that it begs for help:
 
 Creating templates for hardware and stuff: https://github.com/tinkerbell/sandbox#next-steps 
 
-My templates are [there](configs/templates)
+My templates are [there](configs/templates). 
 I can load them into the cluster: 
 
 ```bash
@@ -163,7 +163,7 @@ Boots answers bootp requests, and it looks like that the clients get their ip:
 {"level":"info","ts":1673884379.6905186,"caller":"dhcp4-go@v0.0.0-20190402165401-39c137f31ad3/handler.go:61","msg":"","service":"github.com/tinkerbell/boots","pkg":"dhcp","pkg":"dhcp","event":"send","mac":"00:1e:06:45:0d:48","dst":"255.255.255.255","iface":"eth0","xid":"\"59:b6:c1:73\"","type":"DHCPOFFER","address":"192.168.49.11","next_server":"192.168.49.2","filename":"http://192.168.49.2/ipxe/ipxe.efi"}
 ```
 
-But the node [shows this error](pics/pxe-error.png):
+But the node [shows this error (screenshot)](pics/pxe-error.png):
 
 ```
 Station IP address is 192.168.49.11
@@ -174,7 +174,7 @@ NBP filesize is 0 Bytes
 PXE-E99: Unexpected network error.
 ```
 
-I installed a tcpdump in the boots pod, but i cannot see the given ipaddress there, only in the boots logs.
+I installed a tcpdump in the boots pod, but i cannot see the given ip address there, but only in the boots logs above.
 
 ```
 / # tcpdump -n -i eth0 host 192.168.49.2 and not port 6443
@@ -193,19 +193,15 @@ listening on eth0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
 ```
 
 A filter on `host 192.168.49.11` does not show any traffic.  To be sure i
-booted grml on the node, made a dhcp request, got the ip and was able to
-download the ipxe.efi with `http://192.168.49.2/ipxe/ipxe.efi` as expected. 
+booted [grml](https://grml.org/) on the node, made a dhcp request, got the ip and was able to
+download the ipxe.efi with `wget http://192.168.49.2/ipxe/ipxe.efi` as expected. 
 
-I am running out of ideas right know, so i switched to another node (same problem) and 
-created a pcap file in boots to have a look with wireshark in it - it ran until the node reached the Bios.
+I am running out of ideas right know, so i switched to another node (but same problem) and 
+created a pcap file in boots to have a look with wireshark - it ran until the node reached the BIOS.
 You can find it [here](configs/boots-tcpdump.out) to have a look.
 
-For me it looks like the node(s) get [the DHCP
-Offer](pics/boots-dhcp-offer.png) and they 'know' their ips in the boot
-screens, but they do not configure the interface accordingly - there is no
-gratious arp or a connection attempt to the ipxe server.
-
-
-
-
+For me it looks like the node gets [the DHCP
+Offer](pics/boots-dhcp-offer.png) and it 'knows' its ip in the boot
+screen, but it does not configure the interface accordingly - there is no
+gratious arp or a connection attempt to the http server.
 
