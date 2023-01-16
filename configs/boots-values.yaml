@@ -42,16 +42,16 @@ env:
 - name: FACILITY_CODE
   value: "lab1"
 - name: HTTP_BIND
-  value: "192.168.49.0:80"
+  value: "192.168.49.2:80"
 - name: MIRROR_BASE_URL
-  value: http://192.168.49.0:8080
+  value: http://192.168.49.2:8080
 - name: PUBLIC_IP
-  value: 192.168.49.0
+  value: 192.168.49.2
 - name: PUBLIC_SYSLOG_FQDN
-  value: 192.168.49.0
+  value: 192.168.49.2
 - name: SYSLOG_BIND
-  value: 192.168.49.0:514
+  value: 192.168.49.2:514
 - name: TINKERBELL_GRPC_AUTHORITY
-  value: 192.168.49.0:42113
+  value: 192.168.49.2:42113
 - name: TINKERBELL_TLS
   value: "false"

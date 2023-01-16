@@ -32,7 +32,7 @@ spec:
         lease_time: 86400
         mac: 00:1e:06:45:01:1e
         name_servers:
-          - 192.168.2.1
+          - 192.168.1.2
           - 8.8.8.8
         uefi: true
       netboot:

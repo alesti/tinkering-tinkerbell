@@ -106,3 +106,20 @@ Thats not easy to do, so i gave up and created a lab node with only one
 interface (two workers might be enough to figure out how to setup tinkerbell on
 my existing twolegged hardware)
 
+# BOOTS
+
+```
+{"level":"info","ts":1673884379.6893282,"caller":"dhcp4-go@v0.0.0-20190402165401-39c137f31ad3/handler.go:105","msg":"","service":"github.com/tinkerbell/boots","pkg":"dhcp","pkg":"dhcp","event":"recv","mac":"00:1e:06:45:0d:48","via":"0.0.0.0","iface":"eth0","xid":"\"59:b6:c1:73\"","type":"DHCPDISCOVER"}
+{"level":"info","ts":1673884379.689472,"caller":"boots/dhcp.go:88","msg":"parsed option82/circuitid","service":"github.com/tinkerbell/boots","pkg":"main","mac":"00:1e:06:45:0d:48","circuitID":""}
+{"level":"info","ts":1673884379.6905186,"caller":"dhcp4-go@v0.0.0-20190402165401-39c137f31ad3/handler.go:61","msg":"","service":"github.com/tinkerbell/boots","pkg":"dhcp","pkg":"dhcp","event":"send","mac":"00:1e:06:45:0d:48","dst":"255.255.255.255","iface":"eth0","xid":"\"59:b6:c1:73\"","type":"DHCPOFFER","address":"192.168.49.11","next_server":"192.168.49.2","filename":"http://192.168.49.2/ipxe/ipxe.efi"}
+```
+
+```
+Station IP address is 192.168.49.11
+
+Server IP address is 192.168.49.2
+NBP filename is ipxe.efi
+NBP filesize is 0 Bytes
+PXE-E99: Unexpected network error.
+```
+
