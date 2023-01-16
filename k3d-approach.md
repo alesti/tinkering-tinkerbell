@@ -135,8 +135,74 @@ And, if i start one of my nodes, i can see in boots logs that it begs for help:
   "error":"discover from dhcp message: no hardware found","errorVerbose":
 ```
 
-### Next Step
+### Templates 
 
 Creating templates for hardware and stuff: https://github.com/tinkerbell/sandbox#next-steps 
 
-:-) 
+My templates are [there](configs/templates)
+I can load them into the cluster: 
+
+```bash
+[130] % for i in `ls -1`; do k apply -f $i ; done
+hardware.tinkerbell.org/node-01 configured
+hardware.tinkerbell.org/node-02 unchanged
+hardware.tinkerbell.org/node-03 unchanged
+template.tinkerbell.org/debian unchanged
+template.tinkerbell.org/ubuntu-focal unchanged
+workflow.tinkerbell.org/wf-node-01 unchanged
+```
+
+Boots answers bootp requests, and it looks like that the clients get their ip:
+  
+```bash
+{"level":"info","ts":1673884379.6893282,"caller":"dhcp4-go@v0.0.0-20190402165401-39c137f31ad3/handler.go:105","msg":"","service":"github.com/tinkerbell/boots","pkg":"dhcp","pkg":"dhcp","event":"recv","mac":"00:1e:06:45:0d:48","via":"0.0.0.0","iface":"eth0","xid":"\"59:b6:c1:73\"","type":"DHCPDISCOVER"}
+{"level":"info","ts":1673884379.689472,"caller":"boots/dhcp.go:88","msg":"parsed option82/circuitid","service":"github.com/tinkerbell/boots","pkg":"main","mac":"00:1e:06:45:0d:48","circuitID":""}
+{"level":"info","ts":1673884379.6905186,"caller":"dhcp4-go@v0.0.0-20190402165401-39c137f31ad3/handler.go:61","msg":"","service":"github.com/tinkerbell/boots","pkg":"dhcp","pkg":"dhcp","event":"send","mac":"00:1e:06:45:0d:48","dst":"255.255.255.255","iface":"eth0","xid":"\"59:b6:c1:73\"","type":"DHCPOFFER","address":"192.168.49.11","next_server":"192.168.49.2","filename":"http://192.168.49.2/ipxe/ipxe.efi"}
+```
+
+But the node [shows this error](pics/pxe-error.png):
+
+```
+Station IP address is 192.168.49.11
+
+Server IP address is 192.168.49.2
+NBP filename is ipxe.efi
+NBP filesize is 0 Bytes
+PXE-E99: Unexpected network error.
+```
+
+I installed a tcpdump in the boots pod, but i cannot see the given ipaddress there, only in the boots logs.
+
+```
+/ # tcpdump -n -i eth0 host 192.168.49.2 and not port 6443
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+16:59:32.644890 ARP, Reply 192.168.49.2 is-at 02:42:c0:a8:31:02, length 28
+16:59:35.429925 IP 192.168.49.2.67 > 255.255.255.255.68: BOOTP/DHCP, Reply, length 340
+16:59:35.677055 ARP, Request who-has 192.168.49.2 (ff:ff:ff:ff:ff:ff) tell 192.168.49.2, length 28
+16:59:38.708686 ARP, Reply 192.168.49.2 is-at 02:42:c0:a8:31:02, length 28
+16:59:39.669119 IP 192.168.49.2.67 > 255.255.255.255.68: BOOTP/DHCP, Reply, length 352
+16:59:41.736753 ARP, Request who-has 192.168.49.2 (ff:ff:ff:ff:ff:ff) tell 192.168.49.2, length 28
+16:59:43.552138 IP 192.168.49.2.67 > 255.255.255.255.68: BOOTP/DHCP, Reply, length 352
+16:59:43.601186 IP 192.168.49.2.67 > 255.255.255.255.68: BOOTP/DHCP, Reply, length 352
+16:59:44.792774 ARP, Reply 192.168.49.2 is-at 02:42:c0:a8:31:02, length 28
+16:59:47.613377 IP 192.168.49.2.67 > 255.255.255.255.68: BOOTP/DHCP, Reply, length 352
+```
+
+A filter on `host 192.168.49.11` does not show any traffic.  To be sure i
+booted grml on the node, made a dhcp request, got the ip and was able to
+download the ipxe.efi with `http://192.168.49.2/ipxe/ipxe.efi` as expected. 
+
+I am running out of ideas right know, so i switched to another node (same problem) and 
+created a pcap file in boots to have a look with wireshark in it - it ran until the node reached the Bios.
+You can find it [here](configs/boots-tcpdump.out) to have a look.
+
+For me it looks like the node(s) get [the DHCP
+Offer](pics/boots-dhcp-offer.png) and they 'know' their ips in the boot
+screens, but they do not configure the interface accordingly - there is no
+gratious arp or a connection attempt to the ipxe server.
+
+
+
+
+
