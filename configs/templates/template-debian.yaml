@@ -24,7 +24,7 @@ spec:
             environment:
               DEST_DISK: /dev/nvme0n1
               # Hegel IP
-              IMG_URL: "http://192.168.49.0:8080/debian-10-openstack-amd64.raw.gz"
+              IMG_URL: "http://192.168.48.5:8080/debian-10-openstack-amd64.raw.gz"
               COMPRESSED: true
           - name: "add-tink-cloud-init-config"
             image: writefile:v1.0.0
@@ -41,7 +41,7 @@ spec:
                 datasource:
                   Ec2:
                     # Hegel IP
-                    #metadata_urls: ["http://192.168.49.0:50061"]
+                    #metadata_urls: ["http://192.168.48.5:50061"]
                     strict_id: false
                 system_info:
                   default_user:

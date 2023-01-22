@@ -26,9 +26,9 @@ spec:
         arch: x86_64
         hostname: node-02
         ip:
-          address: 192.168.49.12
+          address: 192.168.48.12
           gateway: 192.168.48.1
-          netmask: 255.255.255.0
+          netmask: 255.255.240.0
         lease_time: 86400
         mac: 00:1e:06:45:14:78
         name_servers:

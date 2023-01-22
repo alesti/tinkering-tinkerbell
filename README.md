@@ -28,7 +28,9 @@ There are some shortcuts as [K3S](https://k3s.io/), but i want to use a small, c
 
 In a first step i tried the [Tinkerbell sandbox](https://github.com/tinkerbell/sandbox#quick-starts).
 
-See my notes [k3d approach](k3d-approach.md) for what i learned so far. 
+See my notes [k3d approach](k3d-approach.md) for what i learned so far - that
+did not worked out due networking problems. I decided to use a dedicated node as provisioner and restarted that with an 
+[raspi4 k3d approach](k3d-raspi-approach.md) which also allows me to add this to the hardware rack and carry it around.
 
 ## Hardware
 
