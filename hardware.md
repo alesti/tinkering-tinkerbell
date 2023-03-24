@@ -74,7 +74,7 @@ have the same physical specs as the H2.
 
 ![1st generation case with Odroids and Switch](pics/case_sm.jpg)
 
-An improved version (february 2023) in the front:
+An improved version with H2 types and better fan distribution (february 2023) on the left:
 
 ![2nd generation case with Odroids (H2 in black, H3 in colored rack)](pics/case-2nd-gen_sm.jpg)
 

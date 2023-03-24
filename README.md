@@ -39,6 +39,9 @@ The latest doc is right now the [k3d approach with a dedicated master, AMD64 arc
 ## Hardware
 
 I decided to use dedicated hardware for that experiment.
+
+![2nd generation case with Odroids (H2 in black, H3 in colored rack)](pics/case-2nd-gen_sm.jpg)
+
 Find more about the used [hardware](hardware.md).
 
 ## Resources
