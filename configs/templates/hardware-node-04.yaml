@@ -3,7 +3,7 @@
 apiVersion: "tinkerbell.org/v1alpha1"
 kind: Hardware
 metadata:
-  name: node-01
+  name: node-04
   namespace: default 
 spec:
   disks:
@@ -15,7 +15,7 @@ spec:
       slug: hardkernel
     instance:
       userdata: ""
-      hostname: "node-01"
+      hostname: "node-04"
       id: "00:1e:06:45:0d:87"
       operating_system:
         distro: "ubuntu"
@@ -24,7 +24,7 @@ spec:
   interfaces:
     - dhcp:
         arch: x86_64
-        hostname: node-01
+        hostname: node-04
         ip:
           address: 192.168.48.14
           gateway: 192.168.48.1
