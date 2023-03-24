@@ -36,17 +36,24 @@ router to separate the home network from the lab network.  I opted for a
 allows a lot of different configurations if neccessary.  I use one port as
 uplink into the home network.
 
-My H2 is dual homed, one leg in the home network, the other in the lab network.
-This leg should act as tinkerbell provisioner for the lab cluster.
+The provisioning node is also an Odroid (H2 type) in the labnet.
 
 ### Cooling
 
-My H2 has a pwm controlled 92mm fan on the top of its case, but it barely uses
+My personal H2 has a pwm controlled 92mm fan on the top of its case, but it barely uses
 it under normal work load.
 
 The case (see below) is somehow size constrained, so i decided to use 80mm
 [Noctua NF-A8 PWM](https://noctua.at/en/nf-a8-pwm) fans, suitable to the
 standard 4pin 2,54mm pitch connector.
+
+Later (in february 2023) i got some additional H2 nodes, and i decided to build a
+better fitting cooling solution dedicated to each node. I needed a different
+connector (4pin 1.25mm pitch) and 5V (instead of 12V as the H3). 
+
+I created a printable fan connector [see below](#case) and opted to use [Noctua
+NF-A6x25 5V PWM](https://noctua.at/de/products/fan/nf-a6x25-5v-pwm) fans in it
+as 60mm is the regular hight of the rackmount.
 
 ### Power Supply
 
@@ -65,7 +72,11 @@ I printed a case with parts of
 [Odroid H2 Rackmount project](https://www.thingiverse.com/thing:3485530) - the H3 
 have the same physical specs as the H2.
 
-![Case with Odroids and Switch](pics/case_sm.jpg)
+![1st generation case with Odroids and Switch](pics/case_sm.jpg)
+
+An improved version (february 2023) in the front:
+
+![2nd generation case with Odroids (H2 in black, H3 in colored rack)](pics/case-2nd-gen_sm.jpg)
 
 I burned down a lot of smaller filament remains, so it has really ugly colours :-)
 [Here are some more pictures](https://photos.google.com/share/AF1QipOEYq0544IV67harl58_uC0024xNleLqJeiRTEjn7_saC3fTc6Ne1Pnuho2mmJ2EA?key=SUhpWUtIOFYzX0pybnV2RXV3aVNjRk9uWXVsazFR) 
@@ -87,4 +98,9 @@ my printer is able to serve (25cm). I melted threaded inserts into it to mount
 the fans on it.
 
 The whole thing is easy movable if neccessary. A vest pocket cluster.
+
+For the 2nd set (H2 type) i wanted to use dedicated fans for each node, so i
+created another [fan connector which fits directly on one hight unit of the rack
+mount kit](https://www.thingiverse.com/thing:5867495).
+
 
