@@ -1,0 +1,40 @@
+# from https://github.com/tinkerbell/tink/blob/main/config/crd/examples/hardware.yaml
+#
+apiVersion: "tinkerbell.org/v1alpha1"
+kind: Hardware
+metadata:
+  name: node-05
+  namespace: default 
+spec:
+  disks:
+    - device: /dev/nvme0n1
+  metadata:
+    facility:
+      facility_code: alekslab
+    manufacturer:
+      slug: hardkernel
+    instance:
+      userdata: ""
+      hostname: "node-05"
+      id: "00:1e:06:45:06:7d"
+      operating_system:
+        distro: "ubuntu"
+        os_slug: "ubuntu_20_04"
+        version: "20.04"
+  interfaces:
+    - dhcp:
+        arch: x86_64
+        hostname: node-05
+        ip:
+          address: 192.168.48.15
+          gateway: 192.168.48.1
+          netmask: 255.255.240.0
+        lease_time: 86400
+        mac: 00:1e:06:45:06:7d
+        name_servers:
+          - 192.168.1.2
+          - 8.8.8.8
+        uefi: true
+      netboot:
+        allowPXE: true
+        allowWorkflow: true
