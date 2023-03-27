@@ -21,7 +21,7 @@ spec:
             timeout: 600
             environment:
               DEST_DISK: {{ index .Hardware.Disks 0 }}
-              IMG_URL: "http://192.168.48.5:8080/focal-server-cloudimg-amd64.raw.gz"
+              IMG_URL: "http://192.168.48.2:8080/focal-server-cloudimg-amd64.raw.gz"
               COMPRESSED: true
           - name: "grow-partition"
             image: quay.io/tinkerbell-actions/cexec:v1.0.0

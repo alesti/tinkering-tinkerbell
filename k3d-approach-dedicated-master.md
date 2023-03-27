@@ -34,7 +34,6 @@ k3d cluster create --network host --no-lb \
   --k3s-arg "--disable=traefik,servicelb" \
   --k3s-arg "--kube-apiserver-arg=feature-gates=MixedProtocolLBService=true" \
    --host-pid-mode tinkerbell
-```
 
 [0] % k cluster-info
 Kubernetes control plane is running at https://0.0.0.0:6443
@@ -156,4 +155,28 @@ It checks, what and how to provision and sends a vmlinux-x86_64.img and an initr
 ```
 
 This looks on the client like this [screenshot](pics/node-04-linuxkit.png)
+
+## THERE WILL BE DRAGONS
+### push an image to the registry with http only
+
+Tinkerbell provides its own docker registry, it runs on the app tink-stack at
+port 8080.  It is neccessary to push the images named in the templates above to
+that registry (https://tinkerbell.org/examples/hello-world/#the-hello-world-action-image). 
+The tinkerbell docs seem to use the name `mirror` instead of registry.
+Its also neccessary to disarm docker to use an unsecured http connection to push the image, see https://docs.docker.com/registry/insecure/
+
+``` 
+[1] % cat /etc/docker/daemon.json
+{
+          "insecure-registries" : ["http://192.168.48.2:8080"]
+}
+
+docker pull hello-world
+docker tag hello-world 192.168.48.2:8080/hello-world
+docker push 192.168.48.2:8080/hello-world
+```
+
+
+
+
 
