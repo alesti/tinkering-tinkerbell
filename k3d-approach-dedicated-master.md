@@ -159,7 +159,9 @@ This looks on the client like this [screenshot](pics/node-04-linuxkit.png)
 ## THERE WILL BE DRAGONS
 ### push an image to the registry with http only
 
-Tinkerbell provides its own docker registry, it runs on the app tink-stack at
+I thought, Tinkerbell provides its own docker registry / artifact store, [but i was wrong](https://cloud-native.slack.com/archives/C01SRB41GMT/p1679940640313709).
+
+FIXME
 port 8080.  It is neccessary to push the images named in the templates above to
 that registry (https://tinkerbell.org/examples/hello-world/#the-hello-world-action-image). 
 The tinkerbell docs seem to use the name `mirror` instead of registry.
