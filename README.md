@@ -28,13 +28,12 @@ There are some shortcuts as [K3S](https://k3s.io/), but i want to use a small, c
 
 In a first step i tried the [Tinkerbell sandbox](https://github.com/tinkerbell/sandbox#quick-starts).
 
-See my notes [k3d approach with docker on a dedicated interface](k3d-approach-docker-dedicated-interface.md) for what i learned so far - that
-did not worked out due networking problems. I decided to use a dedicated node as provisioner and restarted that with an 
-[raspi4 k3d approach](k3d-raspi-approach.md) which also allows me to add this to the hardware rack and carry it around.
+See my latest notes in the [k3d approach with a dedicated master, AMD64 arch](k3d-approach-dedicated-master.md).
 
-I had luck and could get more Odroids, so i canceled that (besides some problems which seemed ARM64 connected).
-The latest doc is right now the [k3d approach with a dedicated master, AMD64 arch](k3s-approach-dedicated-master.md).
-
+I tried (and wrote it down) different things before, but its more for me to
+(later) understand what was going wrong: [k3d approach with docker on a
+dedicated interface](k3d-approach-docker-dedicated-interface.md), [k3d approach
+with a raspi](k3d-raspi-approach.md)(stopped by getting moar amd64 hardware).
 
 ## Hardware
 
